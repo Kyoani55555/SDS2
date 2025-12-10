@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # cache: 'npm'  <-- 我帮你注释掉了这一行，防止报错
+          # cache: 'npm'  <-- 新仓库没缓存文件，这行必须删掉，否则报错！
 
       - name: Install dependencies
         run: npm install
@@ -42,6 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # 关键：上传打包好的 dist 文件夹
           path: './dist'
 
       - name: Deploy to GitHub Pages
